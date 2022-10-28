@@ -1,4 +1,3 @@
-const path = require('path')
 const noteTaker = require('express').Router();
 const uuid = require('uuid')
 const db = require('./db/db.json')
