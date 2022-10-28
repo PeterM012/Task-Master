@@ -10,3 +10,16 @@ app.get('api/notes', (req,res) => {
     })
 })
 
+app.post('api/notes', (req,res) => {
+    let newEntry = {
+        id: newId(),
+        title: req.body.title,
+        text: req.body.text
+    }
+    fs.readFile('./db/db.json', (err,data) => {
+        if(err) throw(err);
+        res.send(data)
+        let newNote = JSON.parse(data);
+        newNote.push(newEntry);
+
+})
