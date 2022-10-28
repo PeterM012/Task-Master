@@ -1,13 +1,12 @@
-const { builtinModules } = require('module');
 const path = require('path')
-const app = require('express').Router();
+const noteTaker = require('express').Router();
 
-app.get('/notes', (req,res) => {
+noteTaker.get('/notes', (req,res) => {
     res.sendFile(path.join(__dirname, '../public/notes.html'));
 })
 
-app.get('*', (req,res) => {
+noteTaker.get('*', (req,res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 })
 
-modules.exports = app
+modules.exports = noteTaker;
