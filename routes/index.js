@@ -18,8 +18,14 @@ app.post('api/notes', (req,res) => {
     }
     fs.readFile('./db/db.json', (err,data) => {
         if(err) throw(err);
-        res.send(data)
         let newNote = JSON.parse(data);
         newNote.push(newEntry);
 
-})
+        fs.writeFile('./db/db.json', JSON.stringify(newNote),(err) => {
+            if(err) throw(err);
+            res.send('new note created')
+    })
+  })
+});
+
+module.export = app
