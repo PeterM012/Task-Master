@@ -26,17 +26,16 @@ noteTaker.post('/', (req,res) => {
     res.send('Note Saved!')
 })
 
-noteTaker.delete('/', (req,res) => {
-    noteInput.push({
-        id: uuid.v4(),
-        title: req.body.title,
-        text: req.body.text
-    })
-    fs.writeFile('./db/db.json', JSON.stringify(noteInput), (err) => {
-        if(err) console.log("Error");
-    })
-    res.send('Note Saved!')
-})
+noteTaker.delete('/:deleteNote', (req,res) => {
+    for (let i = 0; i < noteInput.length; i++) {
+        if(noteInput[i].id == req.params.deleteNote){
+        noteInput.splice(i,1);
+        break;
+        }      
+    }
+    res.send('Note Deleted!')
+}); 
+    
 
 
 
