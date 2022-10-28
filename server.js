@@ -3,23 +3,21 @@ const path = require('path');
 const app = express();
 const PORT = process.env.port || 3001;
 
-const htmlRoutes = require('./routes/notes.js');
+const htmlRoutes = require('./notes.js');
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/api/notes',htmlRoutes);
 app.use(express.static('public'));
 
-app.get('/', (req,res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
+app.use('/api/notes',htmlRoutes);
+
+app.get('/notes', (req,res) => {
+  res.sendFile(path.join(__dirname, '/public/notes.html'));
 })
 
 app.get('/*', (req,res) => {
-  res.sendFile(path.join(__dirname, '/public/404.html'));
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 })
-
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
