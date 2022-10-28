@@ -1,12 +1,12 @@
 const path = require('path')
 const noteTaker = require('express').Router();
 
-noteTaker.get('/notes', (req,res) => {
+noteTaker.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, '../public/notes.html'));
 })
 
-noteTaker.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+noteTaker.post('/', (req,res) => {
+ console.log(req);
 })
 
-modules.exports = noteTaker;
+module.exports = noteTaker;
